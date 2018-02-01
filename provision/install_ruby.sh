@@ -1,5 +1,7 @@
 #!/bin/bash
 
+global_version=2.3.4
+
 echo "Ruby Installation for Ubuntu16.04"
 
 if ! [[ -s /usr/bin/git ]]; then
@@ -23,7 +25,7 @@ fi
 EOF
     source ${HOME}/.profile
 else
-    echo "rbenv is already installed."
+    echo "rbenv is already installed"
 fi
 
 if ! [[ -s ${HOME}/.rbenv/plugins/ruby-build ]]; then
@@ -31,13 +33,13 @@ if ! [[ -s ${HOME}/.rbenv/plugins/ruby-build ]]; then
     mkdir -p ${HOME}/.rbenv/plugins
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 else
-    echo "ruby-build is already installed."
+    echo "ruby-build is already installed"
 fi
 
-if ! [[ -s ${HOME}/.rbenv/versions/2.4.3 ]]; then
+if ! [[ -s ${HOME}/.rbenv/versions/${global_version} ]]; then
     sudo apt-get update
     sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
-    rbenv install 2.3.4
-    rbenv global 2.3.4
+    rbenv install ${global_version}
+    rbenv global ${global_version}
     rbenv rehash
 fi
